@@ -34,6 +34,7 @@ function untar($file, $dest = "./") {
 		$total += 512;
 		$meta = array();
 		// Extract meta data
+		// http://www.mkssoftware.com/docs/man4/tar.4.asp
 		$meta['filename'] = trim(substr($block, 0, 99));
 		$meta['mode'] = octdec((int)trim(substr($block, 100, 8)));
 		$meta['userid'] = octdec(substr($block, 108, 8));
