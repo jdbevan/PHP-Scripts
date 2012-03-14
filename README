@@ -1,0 +1,5 @@
+<?php
+
+echo "A central location for a few useful PHP scripts I've written.";
+
+?>
