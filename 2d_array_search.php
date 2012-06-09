@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Returns index of $haystack whereby $needle is found at $key
  *
@@ -14,7 +13,7 @@ function array_2d_search($needle, $haystack, $key, $strict = false, $case_sensit
 	if (is_resource($needle) and $needle !== null) return false;
 	if (is_array($needle) or is_object($needle)) return false;
 	if (!is_array($haystack)) return false;
-	if (!is_string($key) or !is_int($key)) return false;
+	if (!is_string($key) and !is_int($key)) return false;
 
 	foreach ($haystack as $index=>$array) {
 		if (!is_array($array)) continue;
@@ -26,6 +25,7 @@ function array_2d_search($needle, $haystack, $key, $strict = false, $case_sensit
 				return $index;
 			}
 		} else {
+			echo "::$index " . var_export($array[$key], true), " ", var_export($needle,true), "\n";
 			if ($case_sensitive and $array[$key] == $needle) {
 				return $index;
 			} else if (!$case_sensitive and strtoupper($array[$key]) == strtoupper($needle)) {
@@ -35,6 +35,7 @@ function array_2d_search($needle, $haystack, $key, $strict = false, $case_sensit
 	}
 	return false;
 }
+
 /**
  * Return all indexes of $haystack whereby $needle is found at $key
  *
@@ -49,7 +50,7 @@ function array_2d_keys($needle, $haystack, $key, $strict = false, $case_sensitiv
 	if (is_resource($needle) and $needle !== null) return false;
 	if (is_array($needle) or is_object($needle)) return false;
 	if (!is_array($haystack)) return false;
-	if (!is_string($key) or !is_int($key)) return false;
+	if (!is_string($key) and !is_int($key)) return false;
 
 	$keys = array();
 	foreach ($haystack as $index=>$array) {
