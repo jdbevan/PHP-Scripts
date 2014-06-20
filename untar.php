@@ -74,6 +74,7 @@ function untar($file, $dest = "./") {
 			return true;
 		}
 	}
+	fclose($fh);
 }
 
 ?>
